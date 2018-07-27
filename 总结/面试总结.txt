@@ -1,0 +1,347 @@
+主讲项目：
+	您好这个项目是一个电商类版本主要是运用Vue框架搭建,这个项目主要有4大模块，
+	我主要负责的是element-ui结合webpack搭建底层框架，运用commjs规范更好的实现组件化开发，
+	以及登录注册的逻辑实现并应用路由拦截实现高度安全，也会做一些小的功能应用uploader上传图片，
+	设置头像完整信息等也做了一部分的简单页面，例如首页中的详情跳转,
+	主要是运用vueRouter的push跳转和path,query或者name,params传递参数。并利用localstorage进行存值。
+
+自我介绍：
+	我的回答：您好，我叫刘敏敏24岁，山西临汾人从事WEB前端3年从开始的简单布局一步一步走到现在基本的js结合jquery然后到现在新型的框架Vue,React熟练应用。
+其次在上一家公司主要负责的是web前端的CSS+html静态页面，以及页面的功能都没有问题。
+
+1：sass的变量是$，基于Ruby在服务器端处理。可嵌套使用。没有全局，局部作用域之分，后面会覆盖前面的。
+   less的变量@，基于javascript运行在客户端处理。LESS转译工具有LESS APP，SimpLess、WinLess、CodeKit.app等。
+less是css预处理语言，扩展CSS语言，使CSS更易维护和扩展。在Node或浏览器端。以@开头定义的变量。less作用域是从局部开始查找，逐级向上冒泡。
+2:canvas:画布
+	<canvas id="myCanvas"></canvas>
+	var ctx=c.getContext("2d");
+	ctx.moveTo(x,y) 定义线条开始坐标
+	lineTo(x,y) 定义线条结束坐标
+	font - 定义字体
+	fillText(text,x,y) - 在 canvas 上绘制实心的文本
+	strokeText(text,x,y) - 在 canvas 上绘制空心的文本
+3:element-ui: 
+	第一种：1> npm install vue-cli -g  2>npm init webpack '文件名'
+	第二种：npm install init webpack-simple '文件名'  
+4.es6:
+	1>H5新增的变量const(常量),let(变量)，变量提升  
+	2>摸版字符串，可以用${}和表达式进行拼接   (``)可以实现多行  es5(\)实现
+	3>es6会在初始化时就给我们定义一个默认值，没有在使用
+	4>箭头函数 ，无function关键字创建函数，无return，继承父级this
+	5>对象初始化简写 es5键值对  es6简写
+	6>数据访问->解构
+	7>import导入模块 export导出模块
+	8>promise解决异步的回调函数，同步的方法实现异步的代码 
+	9>generators函数 *function(){} yield暂停 next()执行下一步
+5.AMD,CMD,commjs规范
+	1. 对于依赖的模块，AMD 是提前执行，CMD(在seajs官网中) 是延迟执行。commjs用require引入，export抛出
+	2.出现的原因，开始commjs是基于javascript的解决了模块化的问题实现同步的，所以在后端使用更好，所以前端有了AMD实现异步,
+	CMD跟AMD有一些区别，CMD是在使用过程中提出依赖，AMD是在开头提出依赖。
+6.fetch：
+	1>npm install whatwg-fetch --save，即可安装，为了兼容老版本的浏览器，还需要安装npm install es6-promise --save
+	2>fetch的用法：fetch(url,init).then(function(response) {  } )
+	3>url代表要获取的资源，可能值是一个url或者一个Request对象
+		init: 可选，是一个对象，参数有
+		method: 请求使用的方法get或者post
+		headers: 请求头信息，是一个对象
+      		headers: {
+            		"Content-Type": "application/json"
+             	 },
+	4>返回一个promise对象(resolve,reject){}
+7.mysql数据库，
+8.如何在手机端测试：
+	 1=>npm run build =>打包 （用来在手机端可以测试）
+	 2=>ipconfig =>用来查看电脑的ip地址
+	 3=>在package.json中配置新端口 => "dev": "cross-env NODE_ENV=development webpack-dev-server --port 8080 --hot --host 169.254.66.6",
+	 4=>在server中设置 => 'Access-Control-Allow-Origin':"*",//cors
+	 5=>在http.js中设置const testUrl = 'http://169.254.66.6:3000';
+ 	 6=>在index.html中设置,清除缓存 <meta http-equiv="Cache-Control" content="no-cache">
+9.遇到的问题：
+	 1>在server端配置 'Access-Control-Allow-Origin':"*"全局，
+	 2>有缓存的问题，
+	 3>数据库可以更新,视图更新需要在周期函数开始先监听(用globel event bus);
+	 4>配置静态资源,需要在服务端设置app.use(express.static(path.resolve(__dirname)));
+	 5>做单选的时候其他会单选被影响，用组件封装，父子传值(props)解决
+         6>用手机测试时要关闭防火墙
+
+10.redux-saga
+	是一个用于管理redux应用异步操作的中间件。redux-saga通过创建sagas将所有异步操作逻辑收集在一个地方集中处理，
+可以用来代替redux-thunk中间件。
+	1.在store页面
+		//引用saga    import sagas from './saga.js'; import createSagaMiddleware from 'redux-saga';
+		//创建saga    let sagaMiddleware = createSagaMiddleware();
+		//挂载saga    let store = createStore(reducer,applyMiddleware(logger),applyMiddleware(sagaMiddleware));		
+		//监听saga    sagaMiddleware.run(sagas);
+	2.saga返回一个generator函数 call(text,params) put(params)  watcher-saga:takeEvery(actionType,worker-saga)
+
+11.dva简单描述：
+	dva是技术部开发的React应用框架,将3个React工具库包装在一起,简化API，更方便快捷.(dva=React-Router+Redux+Redux-saga)
+
+12.token的设置与获取
+	let jwt = require('jsonwebtoken');
+	//设置token ===> 设置密码  let token = jwt.sign(req.body, '1601E', { expiresIn: 60 * 360 });
+	//解析token
+        jwt.verify(token, "1601E", function (err, decoded) {
+            if (err) {
+                reject(err)
+            } else {
+                resolve(decoded)
+            }
+        })
+	
+13.cookie步骤
+	1>触发登录按钮,setCookie('token',res.token);设置token储存在本地cookie中
+	2>导航守卫拦截时getCookie('token')为true跳转页面，为false则继续停留在login页面
+
+14. 设置本地储存  localStorage.setItem('username',res.user.name);
+	获取本地存储 localStorage.getItem('username')	
+
+15.三种解决跨域的问题：
+	  
+jsonp跨域数据请求：（//jsonp请求的地址参数有callback）===》
+function jsonp(url,callbackName,callback){
+   
+   1>在全局挂载callName全局可以访问，不报错
+    window[callbackName] = function(data){
+        callback(data)
+    }
+     let script = document.createElement('script');
+     script.src = url;
+     document.body.appendChild(script);
+ }
+	
+    用jsonp请求数据，必须有callback回掉
+            jsonp(this.url,'jsonp119', (res) => {
+                console.log(res);
+            })
+
+    2>proxy(代理)跨域数据请求：(用/api代替域名)
+	webpack中的devserver中写
+	//定义
+	devserver:{ '/api':'（域名）https://m.jd.com'}
+	//获取数据
+	this.$http.get('/api/+地址').then(res=>{console.log(res)})
+
+     3>cors :
+  	res.header({
+	//cors
+        'Access-Control-Allow-Origin':"http://localhost:8080"
+   
+  	  })
+
+   	 注意：res.header中({
+     Access-Control-Allow-Headers属性的设置      
+			Content-Type中有3个属性
+      			application/x-www-form-urlencoded
+      			multipart/form-data
+ 			text/plain
+     })
+15.配置上线环境
+	 new webpack.DefinePlugin({
+   'process.env': {
+   NODE_ENV: '"production"'
+      }
+    })
+
+16.配置路由拦截
+	//创建一个axios实例
+let instance = axios.create({
+    timeout: 3000
+})
+
+	//请求拦截
+instance.interceptors.request.use((config) => {}
+
+15.pwa
+	PWA像传统的web app一样，但是它更优秀。渐进式网络应用程序，
+是一种编写Web应用程序的新方式。在HTTPS下面使用，PWA可通过浏览器在任何地方工作，毕竟它们只是网页，
+用户无需下载任何东西。
+
+16.(react-native)RN
+	通过RN开发的应用最终的实现形式依然是原生代码，和原始混合应用(原生+WebView)的优势就体现出来了。
+	核心：react的系统，不是react的dom. 	缺点：不成熟性。RN目前最新版本是0.51。
+	应用场景：有很多小公司，资金有限，但是希望多平台运行，需要快速上线，抢占先机。这样的App对性能可功能的需求往往不是那么高。这时候RN就可以发挥其作用了。
+
+17.JSBridge
+	没法让一套H5同时适配Android和iOS两个平台，因此，就需要有一个中间组件来实现js与本地的代码的交互，也就是JsBridge。
+	JsBridge之所以能实现Native与Js相互调用的功能，其核心实现其实就是：
+		拦截Url
+		load url("javascript:js_method()");
+	先说第二点，Native调用Js，通过加载以javascript:开头的url即可实现调用Js的方法。
+这个很好理解，在web中也是通过这种方式调用Js的方法的。
+然后细说下第一点的实现：
+
+向body中添加一个不可见的iframe元素。
+通过拦截url的方法来执行相应的操作，但是页面本身不能跳转，所以改变一个不可见的iframe的src就可以让webview拦截到url，而用户是无感知的。
+
+拦截url。通过shouldOverrideUrlLoading来拦截约定规则的Url，再做具体操作。
+Ps： 添加iframe是H5自身可实现的，但是如果H5来实现的话，
+需要每个页面实现，且耦合较高；因此放在库里，通过加载完成注入的方式，则会降低耦合
+
+18.Vuex
+	1>如果在模块化构建系统中，请确保在开头调用了 Vue.use(Vuex)
+	2>创建一个实例对象:let store = new Vuex.Store({
+  state:{}从 store 实例中读取状态最简单的方法就是在计算属性中返回某个状态,定义变量的，代表是：数据源
+  mutations:{}更改 Vuex 的 store 中的状态的唯一方法是提交 mutation。,
+  actions:{},11.Action 提交的是 mutation，而不是直接变更状态   22.Action 可以包含任意异步操作。
+  getters:{}有时候我们需要从 store 中的 state 中派生出一些状态，例如对列表进行过滤并计数：},
+  module:{}为了解决以上问题，Vuex 允许我们将 store 分割成模块（module）)
+
+19.vue数据双向绑定？
+	vue实现双向数据绑定的原理就是利用了 Object.defineProperty() 这个方法重新定义了对象获取属性值(getter)和设置属性值(setter)的操作来实现的。
+
+20.什么是闭包？闭包在什么时候使用？
+	函数套函数，就是作用域的问题，内部可访问外部，反之则不能。
+单独用变量，避免全局污染，浏览器会一直保存在内部，会造成内存泄漏，可手动删除。例如：点击不同按钮弹出相对应的下标，使用闭包i都会被保存，js只有函数作用域，没有块作用域。
+
+21.cookie和localstroage,sessionstroage?
+	cookie内存4k,有时间限制，可共享，在浏览器和服务端来回传递。
+	localstroage内存5M，永久存在，可共享
+	sessionstroage内存5M，该页面关闭就没了，不可共享
+22.受控组件?
+<input value={username} name="username" onChange={(e)=>{this.handlerFn(e)}}>
+	  handlerFn(e){
+	[e.target.name] = e.target.value;
+	}
+
+23.拷贝
+	浅拷贝只是增加了一个指针指向已经存在的内存，
+	深拷贝就是增加一个指针并且申请一个新的内存，使这个增加的指针指向这个新的内存，采用深拷贝的情况下，释放内存的时候就不会出现在浅拷贝时重复释放同一内存的错误！
+	
+24.MVP,MVC和MVVM的区别？
+	 MVC模式是MVP,MVVM模式的基础。
+	 MVVM与MVC最大的区别就是：MVVM=>它实现了View和Model的自动同步，也就是当Model的属性改变时，我们不用再自己手动操作Dom元素，
+来改变View的显示，而是改变属性后该属性对应View层显示会自动改变.
+	 MVC=>
+
+25.webpack优点？
+	webpack是打包工具。webpack 是以 commonJS 的形式来书写脚本滴，但对 AMD/CMD 的支持也很全面，方便旧项目进行代码迁移。
+   webpack和gulp有什么区别？
+	gulp是工具链，构建工具，管理自动化流程，可以进行css,js的文件压缩，less,sass的编译，替代一些手工实现自动化。
+	webpack是打包工具，可以把项目中的css,js文件合并打包成一个或多个文件，可以进行模块化。
+	gulp不适应于单页面应用，所以有了webpack。
+
+26.http协议？
+	http和https使用的是完全不同的连接方式，用的端口也不一样，前者是80，后者是443。http是超文本传输协议，信息是明文传输，
+https 则是具有安全性的ssl加密传输协议。
+
+27.jquery有多少种监听Dom的方法？。
+	jQuery中提供了四种事件监听方式，分别是bind、live、delegate、on，对应的解除监听的函数分别是unbind、die、undelegate、off。我们一般使用on提高效率。
+
+28.前后端分离？
+	1>而前后端分离的话，则可以很好的解决前后端分工不均的问题，将更多的交互逻辑分配给前端来处理，而后端则可以专注于其本职工作，
+     比如提供API接口，进行权限控制以及进行运算工作。
+	2>前端可以独立完成与用户交互的整一个过程，两者都可以同时开工，不互相依赖，开发效率更快，而且分工比较均衡。
+	3>要实现前后端分离，前端就需要开启一个本地的服务器来运行自己的前端代码，以此来模拟真实的线上环境.
+	4>我们利用nodejs的express框架来开启一个本地的服务器，然后利用nodejs的一个http-proxy-middleware插件将客户端发往nodejs的请求转发给真正的服务器，让nodejs作为一个中间层。
+	5>mock来提供一些假数据
+
+29.模块化是基于js,组件化强调的是复用。模块化是组件化的前提。
+
+30.ajax,axios,fetch的区别？
+	ajax=>JQ，JQuery整个项目太大，单纯使用ajax却要引入整个JQuery非常的不合理。  
+	axios=>  1:从 node.js 创建 http 请求	2:支持 Promise AP
+	fetch=>原生,更加底层，提供的API丰富。
+31.为什么要用axios?
+	axios 是一个基于Promise 用于浏览器和 nodejs 的 HTTP 客户端，它本身具有以下特征：
+	从浏览器中创建 XMLHttpRequest
+	从 node.js 发出 http 请求
+	支持 Promise API
+	拦截请求和响应
+	转换请求和响应数据
+	取消请求
+	自动转换JSON数据
+	客户端支持防止CSRF/XSRF
+32.es6 promise,async是generator函数的语法糖,箭头函数，解构赋值，摸版字符串，export(import).	
+
+33.在地址栏输入url运行，渲染的方式是什么？
+	输入url地址，浏览器向服务器发送一个Http请求，浏览器通过Dns解析返回一个新的请求，服务器接受HTML请求，
+如果有script标签写在最下面，不然会中断我们渲染页面，并显示HTML,渲染到页面上。
+
+34.页面的加载，渲染开始到渲染成功，发生了什么？
+	输入Ip地址，浏览器向服务器发送一个Http请求，浏览器通过Dns解析返回一个新的请求，服务器接受HTML请求，并显示HTML，
+返回顺序是先加载Dom树，加载css页面效果，解析JS。
+
+35.路由传参(vuex写三级路由)：/api/:id
+    1> <li @click="getData($event)" data-id='17951827' :class="code==17951827?'show':''">手机通讯</li>   
+    2>  mutations: {
+        updataClassifyList(state, payload) {
+            let o={...state.classifylist};
+           o[payload.id] = payload.res.secondLevelCategories;
+           state.classifylist = o;
+        }
+    },
+     3> actions: {
+        getClassifyList({ state,commit }, cid) {
+            if (!state.classifylist[cid]) {
+                httpInstance.get(`/api/classify?cid=${cid}`).then(res => {
+                    // console.log(res.secondLevelCategories);
+                    commit('updataClassifyList', {
+                        id: cid,
+                        res: res
+                    })
+                })
+            }
+        }
+    },
+     4>  getData(e) {
+           let id = e.target.getAttribute('data-id');
+           this.code = id;  
+	   this.$store.dispatch('getClassifyList',id);
+        }
+      5>计算属性：		computed:{
+shoplist是for在视图中遍历的数组-> shoplist(){
+            			return this.classifylist[this.code]
+        		},
+       			 ...mapState(['classifylist','aa'])
+    	}
+	总结：先监听数据在分类中 this.$store.dispatch('事件',传参数)，在store中通过actions请求数据,mutations更新数据，state定义全局变量，在分类中this.classfily接受参数，在computed计算机属性中map映射[...mapState['classfily']]
+
+36.js面向对象方法：
+	对象字面量，原型函数，构造函数，混合函数，工厂函数
+
+37.Vue.component 是用来全局注册组件的方法，其作用是将通过 Vue.extend 生成的扩展实例构造器注册（命名）为一个组件，components:{}是局部注册
+
+38.函数式编程：
+	是种编程方式，它将电脑运算视为函数的计算。	
+	函数式编程的一个特点就是，允许把函数本身作为参数传入另一个函数，还允许返回一个函数！
+	例如：action通过mutation改变state这就是一个函数式编程的应用。
+39.Vue与react区别：
+	1>Vue是单向数据流，双向绑定(v-model实现的通过监听dom事件实现的语法糖)，2>vuex有watch,readux没有 
+	React是单向数据流，单向绑定(通过View与model层=>state也可以进行双向绑定)
+	Vue的优势包括： 
+	- 模板和渲染函数的弹性选择 
+	- 简单的语法及项目创建 
+	- 更快的渲染速度和更小的体积 
+	- React的优势包括： 
+	- 更适用于大型应用和更好的可测试性 
+	- 同时适用于Web端和原生App 
+	- 更大的生态圈带来的更多支持和工具 
+	React和Vue都是非常优秀的框架，它们之间的相似之处多过不同之处，并且它们大部分最棒的功能是相通的： 
+	- 利用虚拟DOM实现快速渲染 
+	- 轻量级 
+	- 响应式和组件化 
+	- 服务器端渲染 
+	- 易于集成路由工具，打包工具以及状态管理工具 
+	- 优秀的支持和社区
+
+40.优化：
+	图片懒加载，文件动态import触发才更新(按需加载)，shouldComponentUpdate做组件的性能优化(谨慎用)和pureComponent()对props和state进行浅对比
+
+41.按需加载
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
