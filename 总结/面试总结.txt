@@ -1,6 +1,6 @@
 主讲项目：
 	您好这个项目是一个电商类版本主要是运用Vue框架搭建,这个项目主要有4大模块，
-	我主要负责的是element-ui结合webpack搭建底层框架，运用commjs规范更好的实现组件化开发，
+	我主要负责的是mint-ui结合webpack搭建底层框架，运用commjs规范更好的实现组件化开发，
 	以及登录注册的逻辑实现并应用路由拦截实现高度安全，也会做一些小的功能应用uploader上传图片，
 	设置头像完整信息等也做了一部分的简单页面，例如首页中的详情跳转,
 	主要是运用vueRouter的push跳转和path,query或者name,params传递参数。并利用localstorage进行存值。
@@ -34,7 +34,7 @@ less是css预处理语言，扩展CSS语言，使CSS更易维护和扩展。在Node或浏览器端。以@开头
 	8>promise解决异步的回调函数，同步的方法实现异步的代码 
 	9>generators函数 *function(){} yield暂停 next()执行下一步
 5.AMD,CMD,commjs规范
-	1. 对于依赖的模块，AMD 是提前执行，CMD(在seajs官网中) 是延迟执行。commjs用require引入，export抛出
+	1. 对于依赖的模块，AMD(RequireJS，一对多) 是提前执行，CMD(在seajs官网中,一对一) 是延迟执行。commjs用require引入，export抛出
 	2.出现的原因，开始commjs是基于javascript的解决了模块化的问题实现同步的，所以在后端使用更好，所以前端有了AMD实现异步,
 	CMD跟AMD有一些区别，CMD是在使用过程中提出依赖，AMD是在开头提出依赖。
 6.fetch：
@@ -211,8 +211,9 @@ Ps： 添加iframe是H5自身可实现的，但是如果H5来实现的话，
 24.MVP,MVC和MVVM的区别？
 	 MVC模式是MVP,MVVM模式的基础。
 	 MVVM与MVC最大的区别就是：MVVM=>它实现了View和Model的自动同步，也就是当Model的属性改变时，我们不用再自己手动操作Dom元素，
-来改变View的显示，而是改变属性后该属性对应View层显示会自动改变.
-	 MVC=>
+来改变View的显示，而是改变属性后该属性对应View层显示会自动改变.View和Model不发生联系，都通过Presenter（相当于Controller）传递
+	 MVC=>View传送指令到Controller。Controller完成业务逻辑后，要求Model改变状态。Model将新的数据发送到View，用户得到反馈
+Tips：所有的通信都是单向的。
 
 25.webpack优点？
 	webpack是打包工具。webpack 是以 commonJS 的形式来书写脚本滴，但对 AMD/CMD 的支持也很全面，方便旧项目进行代码迁移。
@@ -241,7 +242,7 @@ https 则是具有安全性的ssl加密传输协议。
 30.ajax,axios,fetch的区别？
 	ajax=>JQ，JQuery整个项目太大，单纯使用ajax却要引入整个JQuery非常的不合理。  
 	axios=>  1:从 node.js 创建 http 请求	2:支持 Promise AP
-	fetch=>原生,更加底层，提供的API丰富。
+	fetch=>原生,更加底层，提供的API丰富 。 返回promise函数。
 31.为什么要用axios?
 	axios 是一个基于Promise 用于浏览器和 nodejs 的 HTTP 客户端，它本身具有以下特征：
 	从浏览器中创建 XMLHttpRequest
@@ -336,13 +337,19 @@ shoplist是for在视图中遍历的数组-> shoplist(){
 42.git工作流程：
 	git status(查看工作状态) -> git add . -> git commit -m ''(本地更新) -> git status(暂存区到工作区，再次查看) -> (或者git pull更新)git push(上传，更新远程) 
 
-43.
+43.mint-ui和element-ui的区别？
+	都是是饿了么团队开发的，mint-ui是常用于Web端->移动端，element-ui常用于Pc端。
 
+44.react路由  Vue路由跳转详情？ 
+React	父：this.props.history.push('/path')进行跳转了  子：this.props.match.params.xxx 可以获取到当前路由的参数 
+Vue 	父：this.$router.push({ name: 'home', params: { userId: wise }})	    子：this.$route.query.变量
+sessionStorage.setItem('sid', res.data.data.sid); // 设置本地存储信息 
 
+45.js是单线程？
+	单线程，所有任务都是一条直线的执行下去，前一个任务结束，才会执行后一个任务。如果前一个任务死循环或者需要好长时间执行，后一个任务就要一直等，直到前一个执行完。
+例如：为什么平时看到setTimeout那些感觉是多线程执行，那是因为线程上执行速度很快就过了，所以看到那些“延时任务”好像是马上执行。
 
-
-
-
+46.
 
 
 
