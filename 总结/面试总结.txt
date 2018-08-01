@@ -205,9 +205,12 @@ Ps： 添加iframe是H5自身可实现的，但是如果H5来实现的话，
 	}
 
 23.拷贝
-	浅拷贝只是增加了一个指针指向已经存在的内存，
+	浅拷贝只是增加了一个指针指向已经存在的内存。浅拷贝是指复制对象的时候，指对第一层键值对进行独立的复制。
+	1>Object.assign(target, ...sources)
 	深拷贝就是增加一个指针并且申请一个新的内存，使这个增加的指针指向这个新的内存，采用深拷贝的情况下，释放内存的时候就不会出现在浅拷贝时重复释放同一内存的错误！
-	
+	1>利用 JSON 深拷贝：JSON.parse(JSON.stringify(obj));-->JSON复制会忽略掉值为undefined以及函数表达式。
+	2>使用hasOenProperty方法来过滤掉那些继承自原型链上的属性.
+
 24.MVP,MVC和MVVM的区别？
 	 MVC模式是MVP,MVVM模式的基础。
 	 MVVM与MVC最大的区别就是：MVVM=>它实现了View和Model的自动同步，也就是当Model的属性改变时，我们不用再自己手动操作Dom元素，
@@ -349,9 +352,37 @@ sessionStorage.setItem('sid', res.data.data.sid); // 设置本地存储信息
 	单线程，所有任务都是一条直线的执行下去，前一个任务结束，才会执行后一个任务。如果前一个任务死循环或者需要好长时间执行，后一个任务就要一直等，直到前一个执行完。
 例如：为什么平时看到setTimeout那些感觉是多线程执行，那是因为线程上执行速度很快就过了，所以看到那些“延时任务”好像是马上执行。
 
-46.
+46.SQL语句
+	注册： select * from user where name	insert into user(name,pwd) values(?,?)
+	登录:  select * from user where name=? and pwd=?
+	选择： select * from table1 where 范围：
+	插入： insert into 表名(列表1-->:name,列表2-->age) values(value1-->'张三',value2-->12)
+	删除：delete from 表名(test) where 范围(name="张三")
+	更新：update 表名 set field1=value1(age=16) where 范围(id=2) 
 
+47.版本叙述？
+     webpack:4    React:16.4.1    redux:4    redux-logger:3    redux-thunk:2    mockjs:1   antd:3    "redux-saga": "0.16.0"    "vue": "^2.5.11"     "vuex": "^3.0.1"  	
 
+48. Web的发展史： 2000淘宝,2012->angular，MVC（backbone.js）,MVVM,Vue,React(虚拟Dom,diff运算)
 
-
+49. Web未来应用： 桌面应用，服务端node，App(react-native),网页
 	
+50. 对象--proto--   函数prototype
+
+51. 继承：只有原型继承--proto--    N function(){} M(){}  function brage(){}  brage.prototype=M.prototype; N.prototype = new brage();
+	N继承M  ---> 继承相当于中间有一个中间的桥梁
+
+52.onload在jq,js,vue分别对应的是？ 
+	Jq:$document.ready
+	Js:window.onload
+	Vue:v-on(生命周期都可以)
+
+53.自己封装的promise:
+	function JPromise(fn){
+            let Result = function(){};
+            Result.prototype.then=function(resolve,reject){
+                fn.call(this,resolve,reject)
+            }
+            return new Result()
+        }
+36.'aabbcbbaa'打印是否对称？
