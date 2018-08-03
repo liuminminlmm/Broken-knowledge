@@ -464,7 +464,8 @@ export default {
         })
     }
 }
-	二：例如：fetch
+	二：例如：fetch 通过get，post请求封装，传入2个参数fetch(域名+url,{{参数，例如:methods,headers,body(post用来传递参数的)}}).then().then()全局封转组件
+	具体封装=>
 	import {getCookie} from '@/utils/getcookie.js';
 	let querystring = {
     //对象转换成字符串
@@ -538,6 +539,52 @@ export default {
     }
 }
 
-61:
+61:methos,computed区别：
+	methods:是触发一次调用一次，computed:是计算属性，有缓存，只会触发一次。
+
+62：OA系统：
+	打卡记录，入职，离职，请假，休假，福利政策。
+63：mutaion
+	是用commit触发.
+
+64:Vue的内置组件：component,slot,transition,keep-alive,transition-group,。
+
+65：call,apply,bind
+	都是改变this指向的，它们的区别主要是在于方法的实现形式和参数传递上的不同。
+	show.call(person,"男");
+	show.apply(person,["女"]);
+	//对于bind来说，用法更加的灵活
+	var ss=show.bind(person,"不明");  ss();
+
+66.filter,same,map,reducer
+	filter方法返回的是一个新数组，可用于过滤数组中的对象。filter()方法创建一个新的数组，新数组中的元素是通过检查指定数组中符合条件的所有元素。
+	reducer()方法接收一个函数作为累加器，数组中的每个值（从左到右）开始缩减，最终计算为一个值。不会改变原数组的值。
+	map()方法返回一个经过回调函数处理过的新数组，不会改变原数数组的值
+	some方法返回的是boolean值，返回为true时可以终止循环,可用于检察数组中是否有某对象
+	forEach():没有返回值，只是针对每个元素调用func；不能改变原数组。
+
+67.substr，splice?
+	string.splice(start,删除几个)；		返回被截取的新数组
+	string.slice(start,end(不包含最后一个))  返回被截取的字符串
+		substr（start,end）   		返回截取的字符串
+
+68.beforeEach()是路由进入之前做权限判断。在进入(我的)之前优先做了重定向。   afterEach()路由进入之后才做的。先进入(我的)页面，然后再重定向的。->可以看到我的页面然后重定向。
+
+69.canvas是属于windows的API，h5新增的API，echars是库。
+
+70：let ,const使用js原生怎么实现？
 
 
+71：使用js动态给iframe的src加载页面内容:? 
+  <iframe id="fram"></iframe>
+?document.getelementbyid("fram").src="a2.html"?
+
+72：兼容font-size的问题：
+ document.documentElement.style.fontSize = window.innerWidth / 750 * 100 + "px";
+
+73：commjs是一种模块化的规范==>3模块是：模块引用、模块定义、模块标识 ==>为了弥补javascript的缺陷基于es6，node完成的==>node应用模块，还是webpack 配置 ，均是采用CommonJS模块化规范。
+	require(引入)  export(抛出) filename(绝对路径的模块名)
+
+74：git是
+	git checkout更改分支  git branch创建一个分支  git rm file删除文件
+	
